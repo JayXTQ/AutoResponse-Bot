@@ -1,0 +1,31 @@
+{
+  "name": "autoresponse-bot",
+  "version": "1.0.0",
+  "description": "A Discord bot running on Discord.JS v14 that can create custom auto responses if someone says something specific in a Discord chat",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JayXTQ/AutoResponse-Bot.git"
+  },
+  "keywords": [
+    "discord",
+    "bot"
+  ],
+  "author": "JayXTQ",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JayXTQ/AutoResponse-Bot/issues"
+  },
+  "homepage": "https://github.com/JayXTQ/AutoResponse-Bot#readme",
+  "dependencies": {
+    "@discordjs/rest": "^1.5.0",
+    "chalk": "^4.1.2",
+    "discord-api-types": "^0.37.28",
+    "discord.js": "^14.7.1",
+    "dotenv": "^16.0.3",
+    "yaml": "^2.2.1"
+  }
+}
