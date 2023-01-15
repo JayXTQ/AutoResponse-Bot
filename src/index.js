@@ -7,7 +7,8 @@ const fs = require("fs");
 const YAML = require("yaml");
 const config = fs.readFileSync("./config.yml", "utf8");
 
-const client = new Client({ intents: GatewayIntentBits.Guilds });
+const { Guilds, GuildMessages, MessageContent } = GatewayIntentBits
+const client = new Client({ intents: [Guilds, GuildMessages, MessageContent] });
 client.commands = new Collection();
 client.commandArray = [];
 client.config = YAML.parse(config);
