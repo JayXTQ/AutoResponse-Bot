@@ -28,6 +28,7 @@
     "discord.js": "^14.7.1",
     "dotenv": "^16.0.3",
     "quick.db": "^9.0.8",
+    "tesseract.js": "^4.0.2",
     "yaml": "^2.2.1"
   }
 }

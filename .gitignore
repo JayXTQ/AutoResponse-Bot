@@ -1,4 +1,5 @@
 *.sqlite
+*.traineddata
 
 # Logs
 logs
