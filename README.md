@@ -4,6 +4,8 @@ AutoResponse-Bot is an open-source bot that can help you keep your server clean 
 
 This tutorial may be hard for some newbies but hopefully you can understand it well enough that you don't have to open an issue!
 
+The image reading function is currently in testing stages, hopefully as the system gets older the better it will get. Only time will tell
+
 ## Installation
 
 To start, go ahead and download the code via the green code button. Download the ZIP file.

@@ -12,7 +12,7 @@ module.exports = {
       switch(response.type){
         case "text":
           for (const pickup of response.pickups) {
-            if(message.content.includes(pickup)) howmanyin++;
+            if(message.content.toLowerCase().includes(pickup.toLowerCase())) howmanyin++;
           }
         case "image":
           if(message.attachments.size > 0){
@@ -21,7 +21,7 @@ module.exports = {
                 const { data: { text } } = await Tesseract.recognize(url, client.config.lang);
                 for (const pickup of response.pickups) {
                   if(howmanyin === (response.pickups.length)) break;
-                  if(text.includes(pickup)) howmanyin++;
+                  if(text.toLowerCase().includes(pickup.toLowerCase())) howmanyin++;
                 }
               }
             }
