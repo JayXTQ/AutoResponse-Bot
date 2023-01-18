@@ -23,7 +23,7 @@ module.exports = {
         
         for (const response of aRD) {
             const index = aRD.indexOf(response);
-            embed.addFields({ name: `ID ${index}`, value: `Channel: <#${response.channel.id}>\nPickup values: ${response.pickups.join(", ")}`, inline: true })
+            embed.addFields({ name: `ID ${index}`, value: `Channel: <#${response.channel.id}>\nPickup values: ${response.pickups.join(", ")}\nType: ${response.type}`, inline: true })
         }
 
         await interaction.reply({ embeds: [embed] });
