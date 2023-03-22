@@ -1,3 +1,3 @@
 color: FFFFFF # Embed color
-id: "1016012528465227832" # Your Discord Bot ID, to get that make sure you have Developer Mode turned on and right click your bot and Copy ID
+id: "" # Your Discord Bot ID, to get that make sure you have Developer Mode turned on and right click your bot and Copy ID
 lang: eng # Country code for what you want for the bot to read images by. https://tesseract-ocr.github.io/tessdoc/Data-Files#data-files-for-version-400-november-29-2016 for the full list

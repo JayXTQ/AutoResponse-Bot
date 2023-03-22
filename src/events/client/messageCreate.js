@@ -9,6 +9,7 @@ module.exports = {
     for (const response of aRD) {
       if(message.channelId != response.channel.id) return;
       let howmanyin = 0;
+      let messagesent = false;
       switch(response.type){
         case "text":
           for (const pickup of response.pickups) {
@@ -27,7 +28,10 @@ module.exports = {
             }
           }
       }
-      if(howmanyin === (response.pickups.length)) message.channel.send(response.output)
+      if(howmanyin === (response.pickups.length) && !messagesent) {
+        messagesent = true;
+        message.channel.send(response.output)
+      }
     }
   },
 };
