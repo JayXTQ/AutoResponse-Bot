@@ -1,5 +1,7 @@
 # AutoResponse-Bot
 
+New `Eris` version, built on the Eris framework, check it out at [here](https://github.com/JayXTQ/AutoResponse-Bot/tree/eris)
+
 AutoResponse-Bot is an open-source bot that can help you keep your server clean from people constantly asking the same questions over and over again. I know lot's of people have this issue which is why I made this option totally for free.
 
 This tutorial may be hard for some newbies but hopefully you can understand it well enough that you don't have to open an issue!
