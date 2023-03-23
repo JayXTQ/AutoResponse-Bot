@@ -1,6 +1,4 @@
-# AutoResponse-Bot
-
-## Eris Edition
+# AutoResponse-Bot Eris Edition
 
 **As this is version is built on Eris, it is lacking some functionality but is faster than the Discord.js method from testing. For this you will need to set your own permissions to use the commands, you can do this inside the interactions page on your Discord server, clicking on the bot and adding roles to have access to the commands. Hope this clears things up!**
 
