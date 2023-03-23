@@ -1,10 +1,11 @@
 {
   "name": "autoresponse-bot",
-  "version": "1.0.0",
-  "description": "A Discord bot running on Discord.JS v14 that can create custom auto responses if someone says something specific in a Discord chat",
+  "version": "eris 1.0.0",
+  "description": "A Discord bot running on Eris that can create custom auto responses if someone says something specific in a Discord chat",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js"
   },
   "repository": {
     "type": "git",
@@ -21,13 +22,10 @@
   },
   "homepage": "https://github.com/JayXTQ/AutoResponse-Bot#readme",
   "dependencies": {
-    "@discordjs/rest": "^1.5.0",
-    "better-sqlite3": "^8.0.1",
-    "chalk": "^4.1.2",
-    "discord-api-types": "^0.37.28",
-    "discord.js": "^14.7.1",
+    "better-sqlite3": "^8.2.0",
     "dotenv": "^16.0.3",
-    "quick.db": "^9.0.8",
+    "eris": "^0.17.2",
+    "quick.db": "^9.0.10",
     "tesseract.js": "^4.0.2",
     "yaml": "^2.2.1"
   }
