@@ -16,6 +16,8 @@ client.on('ready', async () => {
         await client.createCommand({
             name: 'create',
             type: Eris.Constants.ApplicationCommandTypes.CHAT_INPUT,
+            default_member_permissions: 2000,
+            dm_permission: false,
             description: 'Creates an autoresponse',
             options: [
                 {
@@ -73,6 +75,8 @@ client.on('ready', async () => {
         await client.createCommand({
             name: 'destroy',
             type: Eris.Constants.ApplicationCommandTypes.CHAT_INPUT,
+            default_member_permissions: 2000,
+            dm_permission: false,
             description: 'Destroys an autoresponse',
             options: [{
                 name: 'id',
@@ -84,12 +88,16 @@ client.on('ready', async () => {
         await client.createCommand({
             name: 'list',
             type: Eris.Constants.ApplicationCommandTypes.CHAT_INPUT,
+            default_member_permissions: 2000,
             description: 'Lists all autoresponses',
+            dm_permission: false,
         })
         await client.createCommand({
             name: 'help',
             type: Eris.Constants.ApplicationCommandTypes.CHAT_INPUT,
+            default_member_permissions: 2000,
             description: 'Help with Autoresponse Bot',
+            dm_permission: false,
         })
     } catch (error) {
         console.error(error);
@@ -99,67 +107,65 @@ client.on('ready', async () => {
 
 client.on('interactionCreate', async (interaction) => {
     if (interaction instanceof Eris.CommandInteraction) {
-        if(interaction.guildID){
-            if(interaction.data.name == 'create') {
-                let options = interaction.data.options[0].options
-                const re = /\s*(?:,|$)\s*/;
-                let pickups = options[0].value.split(re)
-                let output = options[1].value
-                let channel = options[2].value
+        if(interaction.data.name == 'create') {
+            let options = interaction.data.options[0].options
+            const re = /\s*(?:,|$)\s*/;
+            let pickups = options[0].value.split(re)
+            let output = options[1].value
+            let channel = options[2].value
 
-                await db.push("autoResponseData", {
-                    pickups: pickups,
-                    output: output,
-                    channel: channel,
-                    type: interaction.data.options[0].name
-                })
+            await db.push("autoResponseData", {
+                pickups: pickups,
+                output: output,
+                channel: channel,
+                type: interaction.data.options[0].name
+            })
 
-                
-                let aRDlen = await db.get("autoResponseData");
-                aRDlen = aRDlen.length - 1;
+            
+            let aRDlen = await db.get("autoResponseData");
+            aRDlen = aRDlen.length - 1;
 
-                await interaction.createMessage(`Created autoresponse with ID ${aRDlen}`)
+            await interaction.createMessage(`Created autoresponse with ID ${aRDlen}`)
+        }
+        if(interaction.data.name == 'destroy') {
+            let id = interaction.data.options[0].value
+            let aRD = await db.get("autoResponseData");
+            if(!aRD[id]) {
+                await interaction.createMessage({ content: "That ID does not exist, please try again!" });
+                return;
             }
-            if(interaction.data.name == 'destroy') {
-                let id = interaction.data.options[0].value
-                let aRD = await db.get("autoResponseData");
-                if(!aRD[id]) {
-                    await interaction.createMessage({ content: "That ID does not exist, please try again!" });
-                    return;
+            aRD.splice(id, 1)
+            await db.set("autoResponseData", aRD)
+            await interaction.createMessage(`Destroyed autoresponse with ID ${id}`)
+        }
+        if(interaction.data.name == 'list') {
+            let aRD = await db.get("autoResponseData");
+            let aRDlen = aRD.length
+            let fields = []
+            for(let i = 0; i < aRDlen; i++) {
+                fields.push({ name:`ID: ${i}`, value:`Pickup: ${aRD[i].pickups.join(", ")}\nOutput: ${aRD[i].output}\nChannel: <#${aRD[i].channel}>\nType: ${aRD[i].type}`, inline:true })
+            }
+            await interaction.createMessage({
+                embed: {
+                    title: "Autoresponses",
+                    fields: fields,
+                    color: config.color
                 }
-                aRD.splice(id, 1)
-                await db.set("autoResponseData", aRD)
-                await interaction.createMessage(`Destroyed autoresponse with ID ${id}`)
-            }
-            if(interaction.data.name == 'list') {
-                let aRD = await db.get("autoResponseData");
-                let aRDlen = aRD.length
-                let fields = []
-                for(let i = 0; i < aRDlen; i++) {
-                    fields.push({ name:`ID: ${i}`, value:`Pickup: ${aRD[i].pickups.join(", ")}\nOutput: ${aRD[i].output}\nChannel: <#${aRD[i].channel}>\nType: ${aRD[i].type}`, inline:true })
+            })
+        }
+        if(interaction.data.name == 'help') {
+            await interaction.createMessage({
+                embed: {
+                    title: "Help",
+                    fields: [
+                        { name: "/create", value: "Creates an autoresponse" },
+                        { name: "/destroy", value: "Destroys an autoresponse" },
+                        { name: "/list", value: "Lists all autoresponses" },
+                        { name: "/help", value: "Shows this help message" }
+                    ],
+                    color: config.color
                 }
-                await interaction.createMessage({
-                    embed: {
-                        title: "Autoresponses",
-                        fields: fields,
-                        color: config.color
-                    }
-                })
-            }
-            if(interaction.data.name == 'help') {
-                await interaction.createMessage({
-                    embed: {
-                        title: "Help",
-                        fields: [
-                            { name: "/create", value: "Creates an autoresponse" },
-                            { name: "/destroy", value: "Destroys an autoresponse" },
-                            { name: "/list", value: "Lists all autoresponses" },
-                            { name: "/help", value: "Shows this help message" }
-                        ],
-                        color: config.color
-                    }
-                })
-            }
+            })
         }
     }
 }); // Command Handler
