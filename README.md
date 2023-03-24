@@ -1,6 +1,6 @@
 # AutoResponse-Bot Eris Edition
 
-**As this is version is built on Eris, it is lacking some functionality but is faster than the Discord.js method from testing. For this you will need to set your own permissions to use the commands, you can do this inside the interactions page on your Discord server, clicking on the bot and adding roles to have access to the commands. Hope this clears things up!**
+**As this is version is built on Eris, it is lacking some functionality but is faster than the Discord.js method from testing. If any issues arrise make a GitHub issue**
 
 AutoResponse-Bot is an open-source bot that can help you keep your server clean from people constantly asking the same questions over and over again. I know lot's of people have this issue which is why I made this option totally for free.
 
